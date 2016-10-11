@@ -12,10 +12,13 @@
     "babel": "^6.5.2",
     "babel-cli": "^6.16.0",
     "babel-preset-es2016": "^6.16.0",
-    "node-sass": "^3.10.1"
+    "node-sass": "^3.10.1",
+    "nodemon": "^1.11.0"
   },
   "scripts": {
-    "test": "npm start"
+    "start": "node src/index.js",
+    "build": "babel src --out-dir dist --copy-files",
+    "build:watch": "npm run build -- -w"
   },
   "repository": {
     "type": "git",
