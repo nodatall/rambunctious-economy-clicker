@@ -8,3 +8,7 @@
 - [ ] Game is automatically saved at regular intervals in cookie
 - [ ] User can resume saved game
 - [ ] Animation triggered by click
+
+# License
+
+[MIT](https://opensource.org/licenses/MIT)
