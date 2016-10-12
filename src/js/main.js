@@ -32,9 +32,35 @@ const increaseClickLevel = () => {
 }
 
 const buyShape = (shape) => {
+  console.log(shape);
+  switch (shape){
+    case 'Triangle':
+    shapes.push(new Triangle)
+    break;
+    case 'Square':
+    shapes.push(new Square)
+    break;
+    case 'Circle':
+    shapes.push(new Circle)
+    break;
+    case 'Hexagon':
+    shapes.push(new Hexagon)
+    break;
+  }
+  console.log(shapes);
+}
 
+const determineClickValue = (shapes) => {
+  let valueCount = 0
+  clickLevel = shapes.forEach(shape =>{
+    valueCount += shape.value
+    console.log(valueCount);
+  })
 }
 
 
 totalPlusAddPerInterval()
 updateAddPerInterval(2)
+buyShape('Triangle')
+buyShape('Circle')
+determineClickValue(shapes)
