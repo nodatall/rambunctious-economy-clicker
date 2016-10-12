@@ -21,5 +21,5 @@ const increaseClickLevel = () => {
   return clickLevel
 }
 
-addPerMinute()
+totalPlusAddPerInterval()
 updateAddPerInterval(2)
