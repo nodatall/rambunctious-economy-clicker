@@ -19,7 +19,7 @@
     "start": "node dist/index.js",
     "clean": "rm -rf dist && mkdir dist",
     "build-css": "node-sass --include-path src/scss src/scss/main.scss dist/css/main.css",
-    "watch-css": "nodemon -e css --watch src/scss -x \"npm run build-css\"",
+    "watch-css": "nodemon -e scss --watch src/scss -x \"npm run build-css\"",
     "build-js": "babel src/js --out-dir dist/js --copy-files",
     "watch-js": "nodemon -e js --watch src/js -x \"npm run build-js\"",
     "buildwatch": "npm run clean && npm run watch-css & npm run watch-js"
