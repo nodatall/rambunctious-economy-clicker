@@ -1,0 +1,44 @@
+:focus {
+outline: 0;
+}
+
+button {
+  border: 1px solid darken($border, 10% );
+  background-color:darken( $bgColor, 10% );
+  border-radius: 5px;
+  text-align: center;
+  padding:5px 5px;
+}
+
+button:hover {
+  cursor:pointer;
+  background-color:darken( $bgColor, 5% );
+}
+
+h2 {
+  text-align: center;
+}
+
+.container {
+  background: $bgColor;
+  color: #333;
+  position:relative;
+  overflow:hidden;
+  max-width: 800px;
+  margin:0 auto;
+}
+.content{
+  border: 1px solid $border;
+  padding:15px 25px;
+  z-index: 5;
+}
+
+#dimmer {
+  background-color:black;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  opacity: .5;
+  display:none;
+}

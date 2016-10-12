@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="dist/css/main.css">
     <script src="dist/index.js"></script>
   </head>
@@ -12,32 +13,69 @@
       <span id="header-title">Click-A-Brick</span>
     </header>
 
-    <div id="game-main">
+    <div id="game-main" class="container">
+        <div class="content">
+          <div id="game-status">
+            <div id="units-increase">
+              <span class="display-number" id="profit-per-second">2418</span>
+              <button id="buy-shapes">Buy Shapes</button>
+            </div>
+            <div id="current-score">12494189</div>
+            <div id="click-increase">
+              <span class="display-number" id="profit-per-click">10</span>
+              <button id="upgrade-click">Upgrade Click</button>
+            </div>
+          </div>
+          <div id="brick">
+            div for brick
+          </div>
 
-      <div id="game-status">
-        <div id="units-increase">
-          <span class="display-number" id="profit-per-second">2418</span>
-          <button id="buy-shapes">Buy Shapes</button>
+          <div id="shapes-field">
+          </div>
         </div>
-        <div id="current-score"></div>
-        <div id="click-increase">
-          <span class="display-number" id="profit-per-click">10</span>
-          <button id="upgrade-click">Upgrade Click</button>
+  </div>
+
+  <div id="buyArea" class="container">
+        <div class="content">
+          <h2>Buy Units</h2>
+          <div class="buyRow">
+            <div class="shapeIcon" >
+              <div id="triangleIcon"></div>
+            </div>
+            <div class="shapeDescription">Buy a triangle to increase passive income</div>
+            <div class="shapeCount"><span id='triangleCount'>0</span>/<span class='maxShapes'>40</span></div>
+            <button class="buyShape" id=buyTriangle>100</button>
+          </div>
+          <div class="buyRow">
+            <div class="shapeIcon" >
+              <div id="squareIcon"></div>
+            </div>
+            <div class="shapeDescription">Buy a square to increase passive income</div>
+            <div class="shapeCount"><span id='squareCount'>0</span>/<span class='maxShapes'>40</span></div>
+            <button class="buyShape" id=buySquare>400</button>
+          </div>
+          <div class="buyRow">
+            <div class="shapeIcon" >
+              <div id="circleIcon"></div>
+            </div>
+            <div class="shapeDescription">Buy a circle to increase passive income</div>
+            <div class="shapeCount"><span id='circleCount'>0</span>/<span class='maxShapes'>40</span></div>
+            <button class="buyShape" id=buyCircle>800</button>
+          </div>
+          <div class="buyRow">
+            <div class="shapeIcon" >
+              <div id="hexagonIcon"></div>
+            </div>
+            <div class="shapeDescription">Buy a hexagon to increase passive income</div>
+            <div class="shapeCount"><span id='hexagonCount'>0</span>/<span class='maxShapes'>40</span></div>
+            <button class="buyShape" id=buyhexagon>1600</button>
+          </div>
         </div>
-      </div>
+  </div>
 
-      <div id="game-background">
-        div for game background
-      </div>
+  <div id='dimmer'></div>
 
-      <div id="brick">
-        div for brick
-      </div>
-
-      <div id="shapes-field">
-      </div>
 
       <footer>
-
   </body>
 </html>
