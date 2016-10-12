@@ -18,12 +18,12 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node server.js",
     "clean": "rm -rf dist && mkdir dist",
     "build-css": "node-sass --include-path src/scss src/scss/main.scss dist/css/main.css",
     "watch-css": "nodemon -e scss --watch src/scss -x \"npm run build-css\"",
     "webpack": "webpack --progress --colors --watch",
-    "buildwatch": "npm run clean && npm run watch-css & npm run webpack"
+    "buildwatch": "npm run clean && npm run watch-css & npm run webpack & npm start"
   },
   "repository": {
     "type": "git",
