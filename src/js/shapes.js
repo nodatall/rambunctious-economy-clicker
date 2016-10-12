@@ -39,4 +39,4 @@ class Hexagon extends Shape {
   }
 }
 
-module.exports = {Shape, Triangle, Square Circle, Hexagon}
+module.exports = {Shape, Triangle, Square, Circle, Hexagon}
