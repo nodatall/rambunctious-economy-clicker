@@ -14,3 +14,5 @@ const getCookie = () => {
   savedGameData = JSON.parse(savedGameData)
   return savedGameData
 }
+
+export { setCookie, getCookie }
