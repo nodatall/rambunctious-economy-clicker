@@ -1,5 +1,7 @@
+@import 'utilities';
+@import 'buy';
 
 body {
-  background-color: #999;
+  background-color: $bgColor;
   color: #500;
 }
