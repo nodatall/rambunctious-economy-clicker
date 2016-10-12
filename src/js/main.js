@@ -1,4 +1,3 @@
-import $ from 'jquery'
 let total = 0
 let addPerInterval = 1
 let clickLevel = 1
@@ -27,4 +26,4 @@ const increaseClickLevel = () => {
 }
 
 totalPlusAddPerInterval()
-// updateAddPerInterval(2)
+updateAddPerInterval(2)
