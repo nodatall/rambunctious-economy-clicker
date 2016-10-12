@@ -1,3 +1,80 @@
-#buyArea:hover {
-  cursor: pointer;
+#buyArea {
+  max-width: 600px;
+  z-index: 2;
+  top: 0;
+  margin: 0 auto;
+  display: none;
+}
+
+.buyRow {
+  display:flex;
+  margin-bottom:20px;
+}
+
+.buyShape {
+  align-self: center;
+  flex:1 1 20%;
+}
+.shapeIcon {
+  flex:1 1 10%;
+}
+.shapeDescription {
+  flex: 1 1 50%;
+  align-self: center;
+  padding-left:10px;
+}
+.shapeCount {
+  flex:1 1 10%;
+  align-self: center;
+}
+#triangleIcon  {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid yellow;
+}
+
+#squareIcon {
+	width: 50px;
+	height: 50px;
+	background: green;
+}
+
+#circleIcon {
+	width: 50px;
+	height: 50px;
+	background: blue;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#hexagonIcon {
+	width: 50px;
+	height: 27px;
+	background: red;
+	position: relative;
+}
+#hexagonIcon:before {
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 12px solid red;
+}
+#hexagonIcon:after {
+	content: "";
+	position: absolute;
+	bottom: -12px;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-top: 12px solid red;
 }
