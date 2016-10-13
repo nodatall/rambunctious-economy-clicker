@@ -23,7 +23,7 @@ const refreshScore = () => {
 
 const refreshPerInterval = () => {
   document.getElementById('profit-per-second').innerHTML = ""
-  window.document.getElementById('profit-per-second').insertAdjacentHTML('afterbegin', `${addPerInterval}`)
+  document.getElementById('profit-per-second').insertAdjacentHTML('afterbegin', `${addPerInterval}`)
   console.log(`addPerInterval refreshed: ${addPerInterval}`)
 }
 
@@ -55,25 +55,48 @@ const upgradeClick = () => {
   clickPrice = clickPrice + (100*clickLevel)
 }
 
-
-
-const buyShape = (shape) => {
-  console.log(shape);
-  switch (shape){
+const getShape = (type) => {
+  switch (type){
     case 'Triangle':
-    shapes.push(new Triangle)
+    return new Triangle
     break;
     case 'Square':
-    shapes.push(new Square)
+    return new Square
     break;
     case 'Circle':
-    shapes.push(new Circle)
+    return new Circle
     break;
     case 'Hexagon':
-    shapes.push(new Hexagon)
+    return new Hexagon
     break;
   }
-  console.log(shapes);
+}
+
+
+
+const numberOfShape = (type) => {
+  const matchShape = (shape) => {
+    if(shape.isPrototypeOf(type)){
+      console.log('this is the console log');
+      return true
+    }
+  }
+  let allOfThisType = shapes.filter(matchShape(shape)))
+  console.log(allOfThisType);
+  console.log(allOfThisType.length);
+  return allOfThisType.length
+}
+
+const buyShape = (type) => {
+  let shape = getShape(type)
+  shapes.push(shape)
+  let count = numberOfShape(shape)
+  updateAddPerInterval(shape)
+  total -= shape.cost
+  let nextCost = (parseInt(shape.cost)*Math.floor(10 * Math.pow(1.1, shapes.length)))
+  document.getElementById(`buy${type}`).innerHTML = `${nextCost}`
+  document.getElementById(`${type.toLowerCase()}Count`).innerHTML = `${count}`
+
 }
 
 const determineClickValue = () => {
@@ -82,7 +105,10 @@ const determineClickValue = () => {
 
 const beginGame = () => {
   $('#upgrade-click').click( event => upgradeClick() );
-  $('#buy-shapes').click( event => buyShape('Triangle'));
+  $('#buyTriangle').click( event => buyShape('Triangle'));
+  $('#buySquare').click( event => buyShape('Square'));
+  $('#buyCircle').click( event => buyShape('Circle'));
+  $('#buyHexagon').click( event => buyShape('Hexagon'));
   totalPlusAddPerInterval();
 }
 
