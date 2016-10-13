@@ -1,0 +1,22 @@
+#introScreen .content {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#introScreen button {
+  margin:10px auto;
+  min-width:200px;
+  height:35px;
+}
+
+#introScreen {
+  max-width: 600px;
+  z-index: 2;
+  top: 0;
+  bottom:0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  margin: 25px auto 0px;
+}
