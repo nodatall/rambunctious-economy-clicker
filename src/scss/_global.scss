@@ -17,20 +17,35 @@ button:hover {
 
 h2 {
   text-align: center;
+  margin: 10px 0px;
 }
 
 .container {
-  background: $bgColor;
-  color: #333;
   position:relative;
   overflow:hidden;
-  max-width: 800px;
   margin:0 auto;
+  max-width: 800px;
 }
 .content{
+  background: $bgColor;
+  color: $textColor;
   border: 1px solid $border;
   padding:15px 25px;
-  z-index: 5;
+  position:relative;
+  margin:0 15px;
+}
+
+#closeBuy {
+  right: 12px;
+  top: 6px;
+}
+
+.closeX {
+ position: absolute;
+}
+
+.closeX:hover {
+  cursor:pointer;
 }
 
 #dimmer {
@@ -39,6 +54,10 @@ h2 {
   height:100%;
   position:absolute;
   top:0;
+  left:0;
+  right:0;
   opacity: .5;
-  display:none;
+}
+#dimmer:hover {
+  cursor:pointer;
 }
