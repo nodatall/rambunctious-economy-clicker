@@ -24,7 +24,7 @@
     "build-js": "babel src/js --out-dir dist/js --copy-files",
     "watch-css": "nodemon -e scss --watch src/scss -x \"npm run build-css\"",
     "webpack": "webpack --progress --colors --watch",
-    "buildwatch": "npm run clean && npm run watch-css & npm run webpack & npm start"
+    "buildwatch": "npm run clean & npm run build-js & npm run watch-css & npm run webpack & npm start"
   },
   "repository": {
     "type": "git",
