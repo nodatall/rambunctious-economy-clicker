@@ -1,35 +1,61 @@
+import $ from 'jquery'
+import {Shape, Triangle, Square, Circle, Hexagon} from './shapes.js'
+
+const shapes = []
+
 let total = 0
 let addPerInterval = 1
 let clickLevel = 1
-import {Shape, Triangle, Square, Circle, Hexagon} from './shapes.js'
-const shapes = []
+let clickPrice = 100
+  let valueCount = 0
 
-const totalPlusAddPerInterval = () => {
-  const updateTotal = () => {
-    let score = document.getElementById('current-score')
-    total += parseInt(addPerInterval)
-    document.getElementById('current-score').innerHTML = ""
-    document.getElementById('current-score').insertAdjacentHTML('afterbegin', `${total}`)
-    document.getElementById('profit-per-second').innerHTML = ""
-    document.getElementById('profit-per-second').insertAdjacentHTML('afterbegin', `${addPerInterval}`)
-    document.getElementById('profit-per-click').innerHTML = ""
-    document.getElementById('profit-per-click').insertAdjacentHTML('afterbegin', `${clickLevel}`)
-  }
-  window.setInterval(updateTotal,1000)
-
+const refreshClickLevel = () => {
+  document.getElementById('profit-per-click').innerHTML = ""
+  document.getElementById('profit-per-click').insertAdjacentHTML('afterbegin', `${clickLevel}`)
+  console.log(`clickLevel refreshed: ${clickLevel}`);
 }
 
-const updateAddPerInterval = (sumOfPurchasedUnits) => {
-  addPerInterval += sumOfPurchasedUnits
+const refreshScore = () => {
+  document.getElementById('current-score').innerHTML = ""
+  document.getElementById('current-score').insertAdjacentHTML('afterbegin', `${total}`)
+  console.log(`total refreshed: ${total}`)
+}
+
+const refreshPerInterval = () => {
+  document.getElementById('profit-per-second').innerHTML = ""
+  window.document.getElementById('profit-per-second').insertAdjacentHTML('afterbegin', `${addPerInterval}`)
+  console.log(`addPerInterval refreshed: ${addPerInterval}`)
+}
+
+const updateTotal = () => {
+  total += parseInt(addPerInterval)
+  refreshScore()
+  refreshPerInterval()
+  refreshClickLevel()
+}
+
+const totalPlusAddPerInterval = () => {
+  window.setInterval(updateTotal,1000)
+}
+
+const updateAddPerInterval = (shape) => {
+  addPerInterval += shape.value
 }
 
 const totalPlusClickLevel = () => {
-  total += clickLevel
+  total += clickValue
 }
 
 const increaseClickLevel = () => {
-  clickLevel
+  clickLevel += 1
 }
+const upgradeClick = () => {
+  increaseClickLevel()
+  total -= clickPrice
+  clickPrice = clickPrice + (100*clickLevel)
+}
+
+
 
 const buyShape = (shape) => {
   console.log(shape);
@@ -50,17 +76,16 @@ const buyShape = (shape) => {
   console.log(shapes);
 }
 
-const determineClickValue = (shapes) => {
-  let valueCount = 0
-  clickLevel = shapes.forEach(shape =>{
-    valueCount += shape.value
-    console.log(valueCount);
-  })
+const determineClickValue = () => {
+  console.log('this is an empty function');
 }
 
+const beginGame = () => {
+  $('#upgrade-click').click( event => upgradeClick() );
+  $('#buy-shapes').click( event => buyShape('Triangle'));
+  totalPlusAddPerInterval();
+}
 
-totalPlusAddPerInterval()
-updateAddPerInterval(2)
-buyShape('Triangle')
-buyShape('Circle')
-determineClickValue(shapes)
+$(function(){
+  beginGame()
+})
