@@ -1,37 +1,31 @@
 import $ from 'jquery'
 import {Shape, Triangle, Square, Circle, Hexagon} from './shapes.js'
+import divController from './divController.js'
+import swal from 'sweetalert'
 
-const shapes = []
+divController()
 
+let shapes = []
 let total = 0
 let addPerInterval = 1
 let clickLevel = 1
-let clickPrice = 100
-  let valueCount = 0
+let clickPrice = 1
+let valueCount = 0
 
-const refreshClickLevel = () => {
-  document.getElementById('profit-per-click').innerHTML = ""
-  document.getElementById('profit-per-click').insertAdjacentHTML('afterbegin', `${clickLevel}`)
-  console.log(`clickLevel refreshed: ${clickLevel}`);
+const refresh = (id, input) => {
+  $(id).text(input)
 }
 
-const refreshScore = () => {
-  document.getElementById('current-score').innerHTML = ""
-  document.getElementById('current-score').insertAdjacentHTML('afterbegin', `${total}`)
-  console.log(`total refreshed: ${total}`)
-}
-
-const refreshPerInterval = () => {
-  document.getElementById('profit-per-second').innerHTML = ""
-  document.getElementById('profit-per-second').insertAdjacentHTML('afterbegin', `${addPerInterval}`)
-  console.log(`addPerInterval refreshed: ${addPerInterval}`)
+const valueUpdater = {
+  total: () => { refresh('#current-score', total) },
+  clickLevel: () => { refresh('#profit-per-click', clickLevel) },
+  addPerInterval: () => { refresh('#profit-per-second', addPerInterval) },
+  clickPrice: () => { refresh('#click-price', clickPrice) },
 }
 
 const updateTotal = () => {
   total += parseInt(addPerInterval)
-  refreshScore()
-  refreshPerInterval()
-  refreshClickLevel()
+  valueUpdater.total()
 }
 
 const totalPlusAddPerInterval = () => {
@@ -46,14 +40,29 @@ const totalPlusClickLevel = () => {
   total += clickValue
 }
 
-const increaseClickLevel = () => {
-  clickLevel += 1
-}
 const upgradeClick = () => {
-  increaseClickLevel()
-  total -= clickPrice
-  clickPrice = clickPrice + (100*clickLevel)
+  if ((total - clickPrice) < 0 ) {
+    swal({
+      title: "OMG WTF",
+      text: "You don't have enough money for that... n00b",
+      type: "error",
+      confirmButtonText: "I promise to not fuck up again"
+    })
+  } else {
+    total -= clickPrice
+    clickLevel += 1
+    clickPrice = clickPrice + (5*clickLevel)
+    valueUpdater.clickPrice()
+    valueUpdater.clickLevel()
+    valueUpdater.total()
+  }
 }
+$(document).ready( () => {
+  $('#brick').click( () => {
+    total += clickLevel
+    valueUpdater.total()
+  })
+})
 
 const getShape = (type) => {
   switch (type){
@@ -72,16 +81,13 @@ const getShape = (type) => {
   }
 }
 
-
-
 const numberOfShape = (type) => {
   const matchShape = (shape) => {
     if(shape.isPrototypeOf(type)){
-      console.log('this is the console log');
       return true
     }
   }
-  let allOfThisType = shapes.filter(matchShape(shape)))
+  let allOfThisType = shapes.filter(matchShape(shape))
   console.log(allOfThisType);
   console.log(allOfThisType.length);
   return allOfThisType.length
@@ -97,10 +103,6 @@ const buyShape = (type) => {
   document.getElementById(`buy${type}`).innerHTML = `${nextCost}`
   document.getElementById(`${type.toLowerCase()}Count`).innerHTML = `${count}`
 
-}
-
-const determineClickValue = () => {
-  console.log('this is an empty function');
 }
 
 const beginGame = () => {
