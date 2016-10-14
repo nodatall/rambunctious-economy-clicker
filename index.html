@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>title</title>
     <link rel="stylesheet" href="dist/css/main.css">
-    <script>
-    </script>
     <script src="dist/index.js"></script>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans');
+</style>
   </head>
   <body>
 
@@ -16,7 +17,7 @@
             <div id="units-increase">
               <button id="buy-shapes">Upgrade Passive</button>
               <div class="profitTracker">
-                Profit/second:&nbsp;<span class="display-number profit-per-second">1</span>
+                <span>Profit/second</span><span class="display-number profit-per-second">1</span>
               </div>
 
             </div>
@@ -27,7 +28,7 @@
             <div id="click-increase">
               <button id="upgrade-click">Upgrade Click: <span id="click-price">1</span> btc</button>
               <div class="profitTracker">
-                Profit/click:&nbsp;<span class="display-number" id="profit-per-click">1</span>
+                <span>Profit/click</span><span class="display-number" id="profit-per-click">1</span>
               </div>
             </div>
           </div>
@@ -51,7 +52,7 @@
 
   <div id="buyArea" class="container">
         <div class="content">
-          <div class="buyRow">
+          <div class="buyRow" id="buyTopRow">
             <div>Current total:
               <span class="current-score">1</span>
             </div>

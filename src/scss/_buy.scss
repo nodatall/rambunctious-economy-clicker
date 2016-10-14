@@ -16,13 +16,13 @@
   margin-bottom:20px;
 }
 
-.buyRow div {
-  flex: 1 1 25%;
+#buyTopRow div {
+  flex: 1 1 27%;
   align-self: center;
 }
 
 .buyRow h2 {
-  flex: 1 1 40%;
+  flex: 1 1 44%;
   align-self: center;
 }
 
@@ -39,12 +39,12 @@
   flex: 1 1 50%;
   align-self: center;
   padding-left:10px;
-  font-size: 16px;
 }
 
 .shapeCount {
   flex:1 1 10%;
   align-self: center;
+  text-align: center;
 }
 
 #triangleIcon  {
