@@ -82,13 +82,13 @@
 
 @-webkit-keyframes wiggle {
 	0% {
-		-webkit-transform:rotate(3deg);
+		-webkit-transform:rotate(3deg) scale(1);
 	}
 	50% {
-		-webkit-transform:rotate(-3deg);
+		-webkit-transform:rotate(-3deg) scale(1.05);
 	}
 	100% {
-		-webkit-transform:rotate(3deg);
+		-webkit-transform:rotate(3deg) scale(1);
 	}
 }
 
