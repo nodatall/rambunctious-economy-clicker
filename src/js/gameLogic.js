@@ -2,6 +2,7 @@ import $ from 'jquery'
 import {Shape, Triangle, Square, Circle, Hexagon} from './shapes.js'
 import divController from './divController.js'
 import swal from 'sweetalert'
+import coinAnimation from './animation.js'
 
 divController()
 
@@ -12,14 +13,14 @@ let clickLevel = 1
 let clickPrice = 1
 let valueCount = 0
 
-const refresh = (id, input) => {
-  $(id).text(input)
+const refresh = (element, input) => {
+  $(element).text(input)
 }
 
 const valueUpdater = {
-  total: () => { refresh('#current-score', total) },
+  total: () => { refresh('.current-score', total) },
   clickLevel: () => { refresh('#profit-per-click', clickLevel) },
-  addPerInterval: () => { refresh('#profit-per-second', addPerInterval) },
+  addPerInterval: () => { refresh('.profit-per-second', addPerInterval) },
   clickPrice: () => { refresh('#click-price', clickPrice) },
 }
 
@@ -46,18 +47,21 @@ const upgradeClick = () => {
       title: "OMG WTF",
       text: "You don't have enough money for that... n00b",
       type: "error",
-      confirmButtonText: "I promise to not fuck up again"
+      confirmButtonText: "I promise to not fuck up again",
+      allowOutsideClick: true,
     })
   } else {
     total -= clickPrice
     clickLevel += 1
-    clickPrice = clickPrice + (5*clickLevel)
+    clickPrice = clickPrice + (3*clickLevel)
     valueUpdater.clickPrice()
     valueUpdater.clickLevel()
     valueUpdater.total()
   }
 }
+
 $(document).ready( () => {
+  coinAnimation()
   $('#brick').click( () => {
     total += clickLevel
     valueUpdater.total()
@@ -81,28 +85,37 @@ const getShape = (type) => {
   }
 }
 
-const numberOfShape = (type) => {
-  const matchShape = (shape) => {
-    if(shape.isPrototypeOf(type)){
-      return true
+const buyShape = (type) => {
+  let count = document.getElementById(`${type.toLowerCase()}Count`).innerHTML
+  count = parseInt(count)
+  if (count >= 40) {
+    swal({
+      title: "YOU MUFUCKA ",
+      text: "40 is the max amount... fool",
+      type: "error",
+      confirmButtonText: "I promise to not screw up again",
+      allowOutsideClick: true,
+    })
+  } else {
+    let shape = getShape(type)
+    if (shape.cost > total) {
+      swal({
+        title: "OMG WTF",
+        text: "You don't have enough money for that... n00b",
+        type: "error",
+        confirmButtonText: "I promise to not fuck up again",
+        allowOutsideClick: true,
+      })
+    } else {
+      shapes.push(shape)
+      updateAddPerInterval(shape)
+      total -= shape.cost
+      count += 1
+      document.getElementById(`${type.toLowerCase()}Count`).innerHTML = `${count}`
+      valueUpdater.addPerInterval()
+      valueUpdater.total()
     }
   }
-  let allOfThisType = shapes.filter(matchShape(shape))
-  console.log(allOfThisType);
-  console.log(allOfThisType.length);
-  return allOfThisType.length
-}
-
-const buyShape = (type) => {
-  let shape = getShape(type)
-  shapes.push(shape)
-  let count = numberOfShape(shape)
-  updateAddPerInterval(shape)
-  total -= shape.cost
-  let nextCost = (parseInt(shape.cost)*Math.floor(10 * Math.pow(1.1, shapes.length)))
-  document.getElementById(`buy${type}`).innerHTML = `${nextCost}`
-  document.getElementById(`${type.toLowerCase()}Count`).innerHTML = `${count}`
-
 }
 
 const beginGame = () => {

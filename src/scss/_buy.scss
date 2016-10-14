@@ -8,12 +8,22 @@
   position: absolute;
   margin: 25px auto 0px;
   display:none;
-  height:357px;
+  height:405px;
 }
 
 .buyRow {
   display:flex;
   margin-bottom:20px;
+}
+
+.buyRow div {
+  flex: 1 1 25%;
+  align-self: center;
+}
+
+.buyRow h2 {
+  flex: 1 1 40%;
+  align-self: center;
 }
 
 .buyShape {
@@ -29,6 +39,7 @@
   flex: 1 1 50%;
   align-self: center;
   padding-left:10px;
+  font-size: 16px;
 }
 
 .shapeCount {

@@ -3,32 +3,34 @@
   <head>
     <meta charset="utf-8">
     <title>title</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="dist/css/main.css">
     <script src="dist/index.js"></script>
   </head>
   <body>
 
-    <header>
-      <span id="header-title">Click-A-Brick</span>
-    </header>
-
     <div id="game-main" class="container">
         <div class="content">
           <div id="game-status">
             <div id="units-increase">
-              <span class="display-number" id="profit-per-second">1</span>
-              <button id="buy-shapes">Buy Shapes</button>
+              <button id="buy-shapes">Upgrade Passive</button>
+              <div class="profitTracker">
+                Profit/second:&nbsp;<span class="display-number profit-per-second">1</span>
+              </div>
+
             </div>
-            <div id="current-score">0</div>
+            <div id="total-area">
+              Total Bitcoins <br>
+              <span class="current-score">0</span>
+            </div>
             <div id="click-increase">
-              Profit/click: <span class="display-number" id="profit-per-click">1</span>
-              <div>Click upgrade price: <span id="click-price">1</span></div>
-              <button id="upgrade-click">Upgrade Click</button>
+              <button id="upgrade-click">Upgrade Click: <span id="click-price">1</span> btc</button>
+              <div class="profitTracker">
+                Profit/click:&nbsp;<span class="display-number" id="profit-per-click">1</span>
+              </div>
             </div>
           </div>
           <div id="brick">
-            div for brick
+            <img src="./src/images/amazingBrick.png" alt="">
           </div>
 
           <div id="shapes-field">
@@ -39,13 +41,24 @@
   <div id="introScreen" class="container">
     <div class="content">
       <h2>Welcome to<br>Click-a-Brick</h2>
+      <div id="welcomeText">Click the brick to get more Bitcoins</div>
       <button id="newGame">Start new game</button>
       <button id="resumeGame">Resume</button>
     </div>
   </div>
+
   <div id="buyArea" class="container">
         <div class="content">
-          <h2>Buy Shapes</h2>
+          <div class="buyRow">
+            <div>Current total:
+              <span class="current-score">1</span>
+            </div>
+            <h2>Buy Shapes</h2>
+            <div>Profit per second:
+              <span class="profit-per-second">1</span>
+            </div>
+          </div>
+
           <div class="closeX" id="closeBuy">&#10060;</div>
           <div class="buyRow">
             <div class="shapeIcon" >
