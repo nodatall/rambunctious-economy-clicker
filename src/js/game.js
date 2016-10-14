@@ -60,7 +60,7 @@ const alerter = (num) => {
 
 const upgradeClick = () => {
   if ((current.total - current.clickPrice) < 0 ) {
-    alerter(alertCount)
+    alerter(current.alertCount)
   } else {
     current.total -= current.clickPrice
     current.clickLevel += 1
