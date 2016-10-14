@@ -14,6 +14,7 @@ let clickLevel = 1
 let clickPrice = 1
 let valueCount = 0
 let alertCount = 0
+let clickUpgrades = 0
 
 const refresh = (element, input) => {
   $(element).text(input)
@@ -65,8 +66,9 @@ const upgradeClick = () => {
     alerter(alertCount)
   } else {
     total -= clickPrice
-    clickLevel += 1
-    clickPrice = clickPrice + (3*clickLevel)
+    clickUpgrades +=1
+    clickLevel = (clickLevel + Math.ceil(clickUpgrades*.2))
+    clickPrice = clickPrice + (3*clickUpgrades)
     valueUpdater.clickPrice()
     valueUpdater.clickLevel()
     valueUpdater.total()
