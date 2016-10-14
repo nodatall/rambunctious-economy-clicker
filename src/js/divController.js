@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import cookie from './cookie.js'
 
 const divController = () => {
   $(document).ready( () => {
