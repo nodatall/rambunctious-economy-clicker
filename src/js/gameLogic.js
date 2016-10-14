@@ -3,6 +3,7 @@ import {Shape, Triangle, Square, Circle, Hexagon} from './shapes.js'
 import divController from './divController.js'
 import swal from 'sweetalert'
 import coinAnimation from './animation.js'
+import {setCookie, getCookie} from './cookie.js'
 
 divController()
 
@@ -118,15 +119,50 @@ const buyShape = (type) => {
   }
 }
 
-const beginGame = () => {
+const enableBuyShape = () => {
   $('#upgrade-click').click( event => upgradeClick() );
   $('#buyTriangle').click( event => buyShape('Triangle'));
   $('#buySquare').click( event => buyShape('Square'));
   $('#buyCircle').click( event => buyShape('Circle'));
   $('#buyHexagon').click( event => buyShape('Hexagon'));
-  totalPlusAddPerInterval();
 }
 
-$(function(){
-  beginGame()
-})
+const saveState = () => {
+  setCookie({
+  shapes: shapes,
+  total: total,
+  addPerInterval: addPerInterval,
+  clickLevel: clickLevel,
+  clickPrice: clickPrice,
+  valueCount: valueCount
+  })
+}
+
+const loadState = () => {
+  let state = getCookie()
+  shapes = state.shapes
+  total = state.total
+  addPerInterval = state.addPerInterval
+  clickLevel = state.clickLevel
+  clickPrice = state.clickPrice
+  valueCount = state.valueCount
+}
+
+const savePerInterval = () => {
+  window.setInterval(saveState, 60000)
+}
+
+const beginGame = () => {
+  enableBuyShape()
+  saveState()
+  console.log(getCookie())
+  totalPlusAddPerInterval()
+  savePerInterval()
+}
+
+const resumeGame = () => {
+  loadState()
+}
+
+$('#newGame').click(beginGame())
+$('#resumeGame').click(resumeGame())
