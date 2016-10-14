@@ -5,8 +5,8 @@
 - [X] Currency increases on click
 - [X] User can purchase a passive currency increase rate
 - [X] User can purchase an increase on click
-- [ ] Game is automatically saved at regular intervals in cookie
-- [ ] User can resume saved game
+- [X] Game is automatically saved at regular intervals in cookie
+- [X] User can resume saved game
 - [X] Animation triggered by click
 
 # License
