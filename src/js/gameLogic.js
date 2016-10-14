@@ -4,6 +4,8 @@ import divController from './divController.js'
 import swal from 'sweetalert'
 import coinAnimation from './animation.js'
 import {setCookie, getCookie} from './cookie.js'
+import alerts from './alerts.js'
+
 
 divController()
 
@@ -13,6 +15,7 @@ let addPerInterval = 1
 let clickLevel = 1
 let clickPrice = 1
 let valueCount = 0
+let alertCount = 0
 
 const refresh = (element, input) => {
   $(element).text(input)
@@ -42,15 +45,26 @@ const totalPlusClickLevel = () => {
   total += clickValue
 }
 
+const alerter = (num) => {
+  switch (num) {
+    case 0:
+      alerts.outOne()
+      alertCount += 1
+      break;
+    case 1:
+      alerts.outTwo()
+      alertCount += 1
+      break;
+    case 2:
+      alerts.outThree()
+      alertCount = 0
+      break;
+  }
+}
+
 const upgradeClick = () => {
   if ((total - clickPrice) < 0 ) {
-    swal({
-      title: "OMG WTF",
-      text: "You don't have enough money for that... n00b",
-      type: "error",
-      confirmButtonText: "I promise to not fuck up again",
-      allowOutsideClick: true,
-    })
+    alerter(alertCount)
   } else {
     total -= clickPrice
     clickLevel += 1
@@ -90,23 +104,11 @@ const buyShape = (type) => {
   let count = document.getElementById(`${type.toLowerCase()}Count`).innerHTML
   count = parseInt(count)
   if (count >= 40) {
-    swal({
-      title: "YOU MUFUCKA ",
-      text: "40 is the max amount... fool",
-      type: "error",
-      confirmButtonText: "I promise to not screw up again",
-      allowOutsideClick: true,
-    })
+    alerts.max()
   } else {
     let shape = getShape(type)
     if (shape.cost > total) {
-      swal({
-        title: "OMG WTF",
-        text: "You don't have enough money for that... n00b",
-        type: "error",
-        confirmButtonText: "I promise to not fuck up again",
-        allowOutsideClick: true,
-      })
+      alerter(alertCount)
     } else {
       shapes.push(shape)
       updateAddPerInterval(shape)
