@@ -5,7 +5,12 @@ import alerts from './alerts.js'
 import $ from 'jquery'
 
 let current = {
-  shapes: [],
+  shapes: {
+    triangle: 0,
+    square: 0,
+    circle: 0,
+    hexagon: 0
+  },
   total: 0,
   profitPerSecond: 1,
   clickLevel: 1,
@@ -23,6 +28,20 @@ const update = {
   clickLevel: () => { updateDOM('#profit-per-click', current.clickLevel) },
   profitPerSecond: () => { updateDOM('.profit-per-second', current.profitPerSecond) },
   clickPrice: () => { updateDOM('#click-price', current.clickPrice) },
+  counts: () => {
+    updateDOM('#triangleCount', current.shapes.triangle)
+    updateDOM('#squareCount', current.shapes.square)
+    updateDOM('#circleCount', current.shapes.circle)
+    updateDOM('#hexagonCount', current.shapes.hexagon)
+  }
+}
+
+const updateAll = () => {
+  update.total()
+  update.clickLevel()
+  update.profitPerSecond()
+  update.clickPrice()
+  update.counts()
 }
 
 const incrementTotal = () => {
@@ -89,7 +108,8 @@ const getShape = (type) => {
 }
 
 const buyShape = (type) => {
-  let count = document.getElementById(`${type.toLowerCase()}Count`).innerHTML
+  let currentType = type.toLowerCase()
+  let count = document.getElementById(`${currentType}Count`).innerHTML
   count = parseInt(count)
   if (count >= 40) {
     alerts.max()
@@ -98,11 +118,12 @@ const buyShape = (type) => {
     if (shape.cost > current.total) {
       alerter(current.alertCount)
     } else {
-      current.shapes.push(shape)
+      current.shapes[currentType] += 1
+      console.log(current.shapes)
       addShapeToProfit(shape)
       current.total -= shape.cost
       count += 1
-      document.getElementById(`${type.toLowerCase()}Count`).innerHTML = `${count}`
+      document.getElementById(`${currentType}Count`).innerHTML = `${count}`
       update.profitPerSecond()
       update.total()
     }
@@ -158,6 +179,7 @@ const startNewGame = () => {
 
 const resumeGame = () => {
   current = loadGame()
+  updateAll()
   setGameInterval()
   enableBrickClicking()
 }
