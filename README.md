@@ -1,13 +1,13 @@
 # Click a brick
 
-- [ ] Updating currency tally
-- [ ] Currency increases at a steady rate
-- [ ] Currency increases on click
-- [ ] User can purchase a passive currency increase rate
-- [ ] User can purchase an increase on click
+- [X] Updating currency tally
+- [X] Currency increases at a steady rate
+- [X] Currency increases on click
+- [X] User can purchase a passive currency increase rate
+- [X] User can purchase an increase on click
 - [ ] Game is automatically saved at regular intervals in cookie
 - [ ] User can resume saved game
-- [ ] Animation triggered by click
+- [X] Animation triggered by click
 
 # License
 

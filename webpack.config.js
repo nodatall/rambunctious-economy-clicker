@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/js/main.js',
+    entry: './src/js/gameLogic.js',
     output: {
         path: __dirname,
         filename: "./dist/index.js"

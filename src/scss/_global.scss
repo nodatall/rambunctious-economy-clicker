@@ -2,17 +2,31 @@
 outline: 0;
 }
 
+body {
+  font-size: 18px;
+}
+
 button {
   border: 1px solid darken($border, 10% );
-  background-color:darken( $bgColor, 10% );
+  background-color:#305a72;
   border-radius: 5px;
   text-align: center;
-  padding:5px 5px;
+  padding:10px 5px;
+  font-size: 15px;
+  color:white;
 }
 
 button:hover {
   cursor:pointer;
-  background-color:darken( $bgColor, 5% );
+  background-color:darken( #305a72, 10% );
+}
+
+.sa-confirm-button-container button {
+  background-color:#305a72 !important;
+  margin-bottom: 10px;
+}
+.sa-confirm-button-container button:hover {
+  background-color:darken(#305a72, 10%)!important;
 }
 
 h2 {
