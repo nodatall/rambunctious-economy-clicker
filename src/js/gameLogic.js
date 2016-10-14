@@ -18,6 +18,11 @@ let valueCount = 0
 let alertCount = 0
 let clickUpgrades = 0
 
+let triangleCounter = 0
+let squareCounter = 0
+let circleCounter = 0
+let hexagonCounter = 0
+
 const refresh = (element, input) => {
   $(element).text(input)
 }
@@ -77,14 +82,6 @@ const upgradeClick = () => {
   }
 }
 
-$(document).ready( () => {
-  coinAnimation()
-  $('#brick').click( () => {
-    total += clickLevel
-    valueUpdater.total()
-  })
-})
-
 const getShape = (type) => {
   switch (type){
     case 'Triangle':
@@ -132,13 +129,21 @@ const enableBuyShape = () => {
 }
 
 const saveState = () => {
+  triangleCounter = $('#triangleCount').text()
+  squareCounter = $('#squareCount').text()
+  circleCounter = $('#circleCount').text()
+  hexagonCounter = $('#hexagonCount').text()
   setCookie({
   shapes: shapes,
   total: total,
   addPerInterval: addPerInterval,
   clickLevel: clickLevel,
   clickPrice: clickPrice,
-  valueCount: valueCount
+  valueCount: valueCount,
+  triangles: triangleCounter,
+  squares: squareCounter,
+  circles: circleCounter,
+  hexagons: hexagonCounter
   })
 }
 
@@ -150,14 +155,21 @@ const loadState = () => {
   clickLevel = state.clickLevel
   clickPrice = state.clickPrice
   valueCount = state.valueCount
+  triangleCounter = state.triangles
+  squareCounter = state.squares
+  circleCounter = state.circles
+  hexagonCounter = state.hexagons
+  $('#triangleCount').text(triangleCounter)
+  $('#squareCount').text(squareCounter)
+  $('#circleCount').text(circleCounter)
+  $('#hexagonCount').text(hexagonCounter)
 }
 
 const savePerInterval = () => {
-  window.setInterval(saveState, 60000)
+  window.setInterval(saveState, 1000)
 }
 
 const beginGame = () => {
-  enableBuyShape()
   saveState()
   console.log(getCookie())
   totalPlusAddPerInterval()
@@ -166,7 +178,25 @@ const beginGame = () => {
 
 const resumeGame = () => {
   loadState()
+  totalPlusAddPerInterval()
+  savePerInterval()
+  valueUpdater.addPerInterval()
+  valueUpdater.total()
+  valueUpdater.clickLevel()
+  valueUpdater.clickPrice()
 }
 
-$('#newGame').click(beginGame())
-$('#resumeGame').click(resumeGame())
+
+$(document).ready( () => {
+  if (document.cookie.length == 0) {
+    $('#resumeGame').hide()
+  }
+  $('#newGame').click(beginGame)
+  $('#resumeGame').click(resumeGame)
+  enableBuyShape()
+  coinAnimation()
+  $('#brick').click( () => {
+    total += clickLevel
+    valueUpdater.total()
+  })
+})

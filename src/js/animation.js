@@ -15,7 +15,7 @@ const coinAnimation = () => {
           $(document.body).append(div)
           let newCoin = $(`#${id}`)
 
-          let randNum = Math.random()*50
+          let randNum = Math.random()*25
           let otherRand = Math.random()
           let addOrMinus = '-'
           if (otherRand > .5) {addOrMinus = '+'}
