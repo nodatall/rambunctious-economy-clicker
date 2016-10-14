@@ -14,9 +14,18 @@ const coinAnimation = () => {
           div.append(img)
           $(document.body).append(div)
           let newCoin = $(`#${id}`)
+
+          let randNum = Math.random()*50
+          let otherRand = Math.random()
+          let addOrMinus = '-'
+          if (otherRand > .5) {addOrMinus = '+'}
+
           newCoin.animate({
             top: "-=150px"
-          }, 300)
+          }, { queue: false, duration: 300 })
+          newCoin.animate({
+            left: `${addOrMinus}=${randNum}px`
+          }, { queue: false, duration: 300 })
           newCoin.fadeOut({queue: false, duration: 300}).promise().done( () => {
             newCoin.remove()
           })
@@ -24,7 +33,6 @@ const coinAnimation = () => {
           setTimeout(function() {
               $('#brick').removeClass('brickWiggle')
           }, 50);
-
       })
 }
 export default coinAnimation
