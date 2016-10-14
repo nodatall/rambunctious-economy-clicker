@@ -102,23 +102,11 @@ const buyShape = (type) => {
   let count = document.getElementById(`${type.toLowerCase()}Count`).innerHTML
   count = parseInt(count)
   if (count >= 40) {
-    swal({
-      title: "YOU MUFUCKA ",
-      text: "40 is the max amount... fool",
-      type: "error",
-      confirmButtonText: "I promise to not screw up again",
-      allowOutsideClick: true,
-    })
+    alerts.max()
   } else {
     let shape = getShape(type)
     if (shape.cost > total) {
-      swal({
-        title: "OMG WTF",
-        text: "You don't have enough money for that... n00b",
-        type: "error",
-        confirmButtonText: "I promise to not fuck up again",
-        allowOutsideClick: true,
-      })
+      alerter(alertCount)
     } else {
       shapes.push(shape)
       updateAddPerInterval(shape)
