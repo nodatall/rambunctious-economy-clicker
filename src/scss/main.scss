@@ -8,9 +8,30 @@
   display:flex;
   justify-content: center;
 }
+
 #game-main button {
   width: 200px;
   padding:10px 0;
+}
+
+#game-main .content {
+  height: 500px;
+  @include grad(#f4f4f4, #C3C3C3);
+  padding-top:24px;
+}
+
+#game-main .content::before {
+  background: none;
+  border: 3px solid #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  pointer-events: none;
+  border-radius: 2px;
 }
 
 #total-area {
@@ -20,12 +41,23 @@
   margin-top: -15px;
 }
 .profitTracker {
-  margin-top: 5px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.display-number {
+  font-size:30px;
+  color: #562505;
+  font-family: 'PT Sans', sans-serif;
+}
+
 #game-main .current-score {
   font-size:36px;
+  color: #562505;
+  font-family: 'PT Sans', sans-serif;
 }
 
 #brick {
